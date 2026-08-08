@@ -3,6 +3,14 @@ src-address-list "LOKAL" sesuaikan kebutuhan
 nama dari addres-list "Medsos-List" bisa dimangel untuk limitasi
 ------------------------------------------------------------------
 
+/ip firewall mangel
+add  chain=prerouting action=mark-connection new-connection-mark=conn-medsos 
+     passthrough=yes src-address=192.168.10.0/24 src-address-list=LOKAL 
+     dst-address-list=Medsos-List log=no log-prefix="" 
+
+add  chain=forward action=mark-packet new-packet-mark=paket-medsos 
+     passthrough=no connection-mark=conn-medsos log=no log-prefix=""
+
 /ip firewall raw
 add action=add-dst-to-address-list address-list=Medsos-List \
     address-list-timeout=1h chain=prerouting comment=Instagram content=\
