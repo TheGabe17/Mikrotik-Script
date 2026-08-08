@@ -1,0 +1,38 @@
+<!--
+Konfigurasi dasar mikrotik
+Modem -> mikrotik via ip dhcp
+-->
+
+/interface bridge
+add name=Bridge
+/interface wireless security-profiles
+set [ find default=yes ] supplicant-identity=MikroTik
+/ip pool
+add name=dhcp_pool0 ranges=192.168.10.10-192.168.10.200
+/ip dhcp-server
+add address-pool=dhcp_pool0 disabled=no interface=Bridge name=dhcp1
+/interface bridge port
+add bridge=Bridge interface=ether2
+add bridge=Bridge interface=ether3
+add bridge=Bridge interface=ether4
+add bridge=Bridge interface=ether5
+/ip address
+add address=192.168.10.1/24 interface=Bridge network=192.168.10.0
+/ip dhcp-client
+add disabled=no interface=ether1
+/ip dhcp-server network
+add address=192.168.10.0/24 dns-server=8.8.8.8,8.8.4.4 gateway=192.168.10.1
+/ip dns
+set allow-remote-requests=yes servers=8.8.8.8,8.8.4.4
+/ip firewall nat
+add action=masquerade chain=srcnat out-interface=ether1
+/ip service
+set telnet disabled=yes
+set ftp disabled=yes
+set www port=811
+set ssh disabled=yes
+set api disabled=yes
+set winbox port=8111
+set api-ssl disabled=yes
+/system clock
+set time-zone-name=Asia/Jakarta
