@@ -1,0 +1,28 @@
+<!--
+Interface list dan address list sesuaikan dengan kebutuhan
+@2026
+-->
+
+/ip firewall mangle
+add action=accept chain=prerouting comment="bypass lokal akses" disabled=yes \
+    dst-address-list=LOKAL in-interface-list=LAN
+add action=accept chain=output disabled=yes dst-address-list=LOKAL
+add action=mark-connection chain=prerouting comment="PCC " disabled=yes \
+    in-interface-list=LAN new-connection-mark="con pcc ISP1" passthrough=yes \
+    per-connection-classifier=both-addresses-and-ports:2/0
+add action=mark-connection chain=prerouting disabled=yes in-interface-list=\
+    LAN new-connection-mark="con pcc ISP2" passthrough=yes \
+    per-connection-classifier=both-addresses-and-ports:2/1
+add action=mark-routing chain=prerouting connection-mark="con pcc ISP1" \
+    disabled=yes in-interface-list=LAN new-routing-mark="ke ISP1" \
+    passthrough=yes
+add action=mark-routing chain=prerouting connection-mark="con pcc ISP2" \
+    disabled=yes in-interface-list=LAN new-routing-mark="ke ISP2" \
+    passthrough=yes
+
+/ip route
+add dst-address=0.0.0.0/0 gateway=192.168.88.1 gateway-status=192.168.88.1 unreachable check-gateway=ping 
+        distance=1 scope=30 target-scope=10 routing-mark=ke ISP1 
+
+add dst-address=0.0.0.0/0 gateway=192.168.70.1 gateway-status=192.168.70.1 unreachable check-gateway=ping 
+        distance=1 scope=30 target-scope=10 routing-mark=ke ISP2
