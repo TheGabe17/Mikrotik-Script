@@ -1,0 +1,111 @@
+--------------------------------------------
+
+src-address-list "LOKAL" sesuaikan kebutuhan
+
+--------------------------------------------
+/ip firewall raw
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting comment=Instagram content=\
+    .instagram.com dst-address-list=!LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting content=.cdninstagram.com \
+    dst-address-list=!LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting content=.threads.net \
+    dst-address-list=!LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting comment=Youtube content=\
+    .youtube.com dst-address-list=!LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting content=.googlevideo.com \
+    dst-address-list=!LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting comment=playstore,GD content=\
+    .ytimg.com disabled=yes dst-address-list=!LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting content=yt3.ggpht.com \
+    dst-address-list=!LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting content=youtu.be \
+    dst-address-list=!LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting content=youtubei.googleapis.com \
+    dst-address-list=!LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting comment=Facebook content=\
+    .facebook.com dst-address-list=!LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting content=.facebook.net \
+    dst-address-list=!LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting content=.fbcdn.net \
+    dst-address-list=!LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting content=.fbsbx.com \
+    dst-address-list=!LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting content=fb.com dst-address-list=\
+    !LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting content=fb.gg dst-address-list=\
+    !LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting content=fbwat.ch \
+    dst-address-list=!LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting content=messenger.com \
+    dst-address-list=!LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting content=m.me dst-address-list=\
+    !LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting comment=Twitter content=\
+    twitter.com dst-address-list=!LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting content=.twitter.com \
+    dst-address-list=!LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting content=.twimg.com \
+    dst-address-list=!LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting comment=Chatgpt content=t.co \
+    disabled=yes dst-address-list=!LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting content=x.com dst-address-list=\
+    !LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting content=.x.com dst-address-list=\
+    !LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting comment=Tiktok content=\
+    .tiktokv.com dst-address-list=!LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting content=.tiktokcdn.com \
+    dst-address-list=!LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting content=.byteoversea.com \
+    dst-address-list=!LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting content=.ibyteimg.com \
+    dst-address-list=!LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting content=.ibytedtos.com \
+    dst-address-list=!LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting content=.ttwstatic.com \
+    dst-address-list=!LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting content=.ttlivecdn.com \
+    dst-address-list=!LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting content=.tiktokcdn-us.com \
+    dst-address-list=!LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting content=.tiktokcdn-in.com \
+    dst-address-list=!LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting content=bytedance.com \
+    dst-address-list=!LOKAL src-address-list=LOKAL
+add action=add-dst-to-address-list address-list=Medsos-List \
+    address-list-timeout=1h chain=prerouting content=.myqcloud.com \
+    dst-address-list=!LOKAL src-address-list=LOKAL
