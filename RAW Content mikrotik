@@ -1,8 +1,8 @@
---------------------------------------------
-
+------------------------------------------------------------------
 src-address-list "LOKAL" sesuaikan kebutuhan
+nama dari addres-list "Medsos-List" bisa dimangel untuk limitasi
+------------------------------------------------------------------
 
---------------------------------------------
 /ip firewall raw
 add action=add-dst-to-address-list address-list=Medsos-List \
     address-list-timeout=1h chain=prerouting comment=Instagram content=\
