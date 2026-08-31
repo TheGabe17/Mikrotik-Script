@@ -3,7 +3,7 @@ src-address-list "LOKAL" sesuaikan kebutuhan
 nama dari addres-list "Medsos-List" bisa dimangel untuk limitasi
 ------------------------------------------------------------------
 
-/ip firewall mangel
+/ip firewall mangle
 add  chain=prerouting action=mark-connection new-connection-mark=conn-medsos 
      passthrough=yes src-address=192.168.10.0/24 src-address-list=LOKAL 
      dst-address-list=Medsos-List log=no log-prefix="" 
