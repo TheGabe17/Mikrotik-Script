@@ -1,0 +1,28 @@
+Membuat Isolir Page untuk Client PPPoE
+LANGKAH #1: Buat IP Pool baru khusus untuk client PPPoE yang akan diisolir, untuk IP address bisa dipisahkan atau disamakan dengan IP PPPoE yang sudah ada.
+
+/ip pool add name=POOL-ISOLIR ranges=172.16.2.2-172.16.2.254
+
+LANGKAH #2: Buat Profile PPP baru khusus untuk isolir.
+
+/ppp profile add name=PROFIL-ISOLIR local-address=172.16.2.1 remote-address=POOL-ISOLIR address-list=ISOLIR-LIST
+
+LANGKAH #3: Aktifkan Web Proxy dan Atur Port. GunakanLayanan Proxy
+
+/ip proxy set enabled=yes port=6574
+
+/ip proxy access add comment="Blok PPPoE Isolir - BILHANET" src-address=172.16.2.0/24 dst-address=!172.16.2.1 action=deny redirect-to=172.16.2.1:6574
+
+LANGKAH #4: Buat notifikasi ke perangkat client (HP / PC) bahwa akses internet telah diisolir.
+
+/ip firewall nat add comment="Notif Redirect PPPOE Isolir - BILHANET" chain=dstnat protocol=tcp dst-port=80,443 src-address-list=POOL-ISOLIR action=redirect to-ports=6574
+
+LANGKAH #5: Buat rule untuk memblokir semua akses internet khusus ke PPPoE yang terisolir.
+
+/ip firewall filter add comment="Blok Internet ke PPPoE Isolir - BILHANET" chain=forward src-address-list=ISOLIR-LIST action=drop
+
+LANGKAH #6: Reset dan Hapus File error.html bawaan Mikrotik.
+
+/ip proxy reset-html
+y
+/file remove webproxy/error.html
